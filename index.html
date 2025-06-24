@@ -4,73 +4,64 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Fatmanur Affedecekmi</title>
+    <title>Affet Sayfası</title>
     <style>
-        * {
-            box-sizing: border-box;
-        }
-
         body {
             margin: 0;
             padding: 0;
             font-family: 'Segoe UI', sans-serif;
-            background: #f9f9f9;
+            background: #f2f2f2;
             display: flex;
             flex-direction: column;
-            justify-content: center;
             align-items: center;
+            justify-content: center;
             height: 100vh;
             text-align: center;
+            overflow: hidden;
         }
 
         img {
-            width: 150px;
-            height: 150px;
+            width: 200px;
+            height: 200px;
             object-fit: cover;
-            border-radius: 50%;
+            border-radius: 20px;
             margin-bottom: 20px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
         }
 
         h1 {
-            font-size: 1.8rem;
-            color: #333;
-            margin-bottom: 40px;
+            font-size: 1.5rem;
+            margin-bottom: 30px;
         }
 
         .button-container {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-            width: 80%;
-            max-width: 400px;
+            position: relative;
+            width: 100%;
+            height: 200px;
         }
 
         button {
-            padding: 15px;
-            font-size: 1.2rem;
+            padding: 15px 20px;
+            font-size: 1.1rem;
             border: none;
             border-radius: 10px;
             cursor: pointer;
-            transition: 0.3s ease;
+            position: absolute;
+            transition: all 0.3s ease;
+            /* Kayma animasyonu */
         }
 
         .yes {
             background-color: #4caf50;
             color: white;
-        }
-
-        .yes:hover {
-            background-color: #43a047;
+            left: 20%;
+            top: 20%;
         }
 
         .no {
             background-color: #f44336;
             color: white;
-        }
-
-        .no:hover {
-            background-color: #e53935;
+            left: 60%;
+            top: 60%;
         }
 
         .modal {
@@ -99,23 +90,19 @@
 </head>
 
 <body>
-    <h1>Fatmanur</h1>
-    <!-- Görsel -->
-    <img src="images_1.jpg" alt="Profil Fotoğrafı" />
 
-    <h1>Beni affedecek misin?</h1>
+    <img src="images_1.jpg" alt="Kedi" />
+    <h1>Onu affedecek misin?</h1>
 
     <div class="button-container">
-        <button class="yes" onclick="showModal('Affettin 🎉🎉🎉')">Affet</button>
-        <button class="no" onclick="showModal('Kesinlikle Affettin 🎉🎉🎉 ')">Kesinlikle Affet</button>
+        <button class="yes" onclick="showModal('Affettin 🎉')">Affet</button>
+        <button class="no" onclick="moveButton()">Kesinlikle Affetme</button>
     </div>
 
-    <!-- Modal -->
     <div class="modal" id="popup">
         <div class="modal-content" id="popupText"></div>
     </div>
 
-    <!-- Konfeti -->
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
     <script>
         function showModal(message) {
@@ -134,8 +121,27 @@
                 modal.style.display = "none";
             }, 3000);
         }
-    </script>
 
+        function moveButton() {
+            const button = document.querySelector(".no");
+            const container = document.querySelector(".button-container");
+
+            const containerWidth = container.offsetWidth;
+            const containerHeight = container.offsetHeight;
+
+            const buttonWidth = button.offsetWidth;
+            const buttonHeight = button.offsetHeight;
+
+            const maxX = containerWidth - buttonWidth;
+            const maxY = containerHeight - buttonHeight;
+
+            const randomX = Math.floor(Math.random() * maxX);
+            const randomY = Math.floor(Math.random() * maxY);
+
+            button.style.left = `${randomX}px`;
+            button.style.top = `${randomY}px`;
+        }
+    </script>
 
 </body>
 
