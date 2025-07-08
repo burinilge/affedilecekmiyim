@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Affet Sayfası</title>
+    <title>Fatmanur Eğlence Merkezi</title>
     <style>
         body {
             margin: 0;
@@ -47,18 +47,17 @@
             cursor: pointer;
             position: absolute;
             transition: all 0.3s ease;
-            /* Kayma animasyonu */
         }
 
         .yes {
-            background-color: #4caf50;
+            background-color: #5f0808;
             color: white;
             left: 20%;
             top: 20%;
         }
 
         .no {
-            background-color: #f44336;
+            background-color: #070d64;
             color: white;
             left: 60%;
             top: 60%;
@@ -91,38 +90,32 @@
 
 <body>
 
-    <img src="images_1.jpg" alt="Kedi" />
-    <h1>Onu affedecek misin?</h1>
+    <img src="/images_1.jpg" />
+    <h1>Sürekli Gül Diye Benim İşim Varkende</h1>
 
     <div class="button-container">
-        <button class="yes" onclick="showModal('Affettin 🎉')">Affet</button>
-        <button class="no" onclick="moveButton()">Kesinlikle Affetme</button>
+        <button class="yes" onclick="affet()">İnsan İçinde Tıklama</button>
+        <button class="no" onclick="moveButton()">Temam Kuzum</button>
     </div>
 
     <div class="modal" id="popup">
         <div class="modal-content" id="popupText"></div>
     </div>
 
+    <!-- SES DOSYALARI -->
+    <audio id="yesSound" src="/Kayıt.m4a"></audio>
+    <audio id="noSound" src="/Kayıt (2).m4a"></audio>
+
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
     <script>
-        function showModal(message) {
-            const modal = document.getElementById("popup");
-            const text = document.getElementById("popupText");
-            text.innerText = message;
-            modal.style.display = "flex";
-
-            confetti({
-                particleCount: 150,
-                spread: 100,
-                origin: { y: 0.6 }
-            });
-
-            setTimeout(() => {
-                modal.style.display = "none";
-            }, 3000);
+        function affet() {
+            document.getElementById('yesSound').play(); // Affet buton sesi
+            showModal('İnsan İçinde Açma Demedimmi :)');
         }
 
         function moveButton() {
+            document.getElementById('noSound').play(); // Kesinlikle Affetme buton sesi
+
             const button = document.querySelector(".no");
             const container = document.querySelector(".button-container");
 
@@ -140,6 +133,23 @@
 
             button.style.left = `${randomX}px`;
             button.style.top = `${randomY}px`;
+        }
+
+        function showModal(message) {
+            const modal = document.getElementById("popup");
+            const text = document.getElementById("popupText");
+            text.innerText = message;
+            modal.style.display = "flex";
+
+            confetti({
+                particleCount: 150,
+                spread: 100,
+                origin: { y: 0.6 }
+            });
+
+            setTimeout(() => {
+                modal.style.display = "none";
+            }, 10000);
         }
     </script>
 
